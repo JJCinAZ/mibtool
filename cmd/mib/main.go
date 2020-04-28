@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/hallidave/mibtool/smi"
+	"github.com/jjcinaz/mibtool/smi"
 	"os"
 	"os/user"
 	"path/filepath"

@@ -148,6 +148,7 @@ func (mib *MIB) indexModules() error {
 					ID:           id,
 					Module:       mod,
 					Parent:       parent,
+					Description:  n.Description,
 					ChildByLabel: make(map[string]*Symbol),
 					ChildByID:    make(map[int]*Symbol),
 				}
@@ -215,7 +216,8 @@ func (mib *MIB) loadModule(modName string) error {
 	}
 	mod := mib.Modules[modName]
 	if mod == nil {
-		return fmt.Errorf("loading: module not found: %s", modName)
+		log.Printf("loading: module not found: %s", modName)
+		return nil
 	}
 	if mod.IsLoaded {
 		return nil
@@ -230,6 +232,7 @@ func (mib *MIB) loadModule(modName string) error {
 	mod.Nodes = parsedMod.Nodes
 	mod.Imports = parsedMod.Imports
 	mod.IsLoaded = true
+	mod.Description = parsedMod.Description
 	mod.Symbols = make(map[string]*Symbol)
 	err = mib.loadImports(mod.Imports)
 	if err != nil {

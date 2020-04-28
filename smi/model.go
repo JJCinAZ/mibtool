@@ -49,20 +49,22 @@ type Import struct {
 
 // A Node represents a parse node in an SMI document
 type Node struct {
-	Label string
-	Type  NodeType
-	IDs   []SubID
+	Label       string
+	Type        NodeType
+	Description string
+	IDs         []SubID
 }
 
 // A Module contains all of the parse results for a single module file.
 // Only the Name and File fields are valid if the IsLoaded flag is false.
 type Module struct {
-	Name     string
-	File     string
-	Imports  []Import
-	Nodes    []Node
-	IsLoaded bool
-	Symbols  map[string]*Symbol
+	Name        string
+	File        string
+	Imports     []Import
+	Nodes       []Node
+	IsLoaded    bool
+	Description string
+	Symbols     map[string]*Symbol
 }
 
 // A Symbol represents a single symbol in the tree of identifiers.
@@ -74,6 +76,7 @@ type Symbol struct {
 	ID           int
 	Module       *Module
 	Parent       *Symbol
+	Description  string
 	ChildByLabel map[string]*Symbol
 	ChildByID    map[int]*Symbol
 }

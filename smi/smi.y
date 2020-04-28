@@ -807,7 +807,7 @@ objectTypeClause:	tLOWERCASE_IDENTIFIER
 			DefValPart                   /* old $14, new $19 */
 			tCOLON_COLON_EQUAL '{' ObjectName '}' /* old $17, new $22 */
 			{
-				$$ = Node{Label: $1, Type: NodeObjectType, IDs: $20}
+				$$ = Node{Label: $1, Type: NodeObjectType, Description: $11, IDs: $20}
 			}
 	;
 
@@ -816,6 +816,7 @@ descriptionClause:	/* empty */
 			}
 	|		tDESCRIPTION Text
 			{
+				$$ = $2
 			}
 	;
 
@@ -988,7 +989,7 @@ moduleIdentityClause:	tLOWERCASE_IDENTIFIER
 			tCOLON_COLON_EQUAL
 			'{' objectIdentifier '}'
 			{
-				$$ = Node{Label: $1, Type: NodeModuleID, IDs: $15}
+				$$ = Node{Label: $1, Type: NodeModuleID, IDs: $15, Description: $11}
 			}
         ;
 

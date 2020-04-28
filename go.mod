@@ -1,3 +1,3 @@
-module github.com/hallidave/mibtool
+module github.com/jjcinaz/mibtool
 
-go 1.12
+go 1.13
